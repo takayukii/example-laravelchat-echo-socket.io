@@ -21,7 +21,12 @@
             <div class="col-md-8 col-md-offset-2">
                 <ul>
                     <li v-for="message in messages">
-                        {{ message.created_at }} {{ message.text }} - {{ message.sender.name }} -> {{ message.receiver.name }}
+                        <span v-if="message.type === 'news'" style="color: red;">
+                            NEWS {{ message.created_at }} {{ message.text }}
+                        </span>
+                        <span v-else>
+                            {{ message.created_at }} {{ message.text }} - {{ message.sender.name }} -> {{ message.receiver.name }}
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -55,6 +60,13 @@
                 Echo.private('user.' + this.me.id)
                     .listen('MessageCreatePrivateEvent', (e) => {
                         console.log(e);
+                        this.messages.unshift(e.message);
+                    });
+
+                Echo.channel('news')
+                    .listen('MessageCreateBroadcastEvent', (e) => {
+                        console.log(e);
+                        e.message.type = 'news'
                         this.messages.unshift(e.message);
                     });
             })
