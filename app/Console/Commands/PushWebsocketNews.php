@@ -39,13 +39,14 @@ class PushWebsocketNews extends Command
      */
     public function handle()
     {
-	    $arguments = $this->argument();
-	    $text = $arguments['text'];
+        $arguments = $this->argument();
+        $text      = $arguments['text'];
 
-	    $message = Message::create([
-	    	'text' => $text,
-	    ]);
-	    event(new MessageCreateBroadcastEvent($message));
-	    return true;
+        $message = Message::create([
+            'text' => $text,
+        ]);
+        event(new MessageCreateBroadcastEvent($message));
+
+        return true;
     }
 }

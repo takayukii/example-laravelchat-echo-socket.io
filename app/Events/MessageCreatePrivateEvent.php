@@ -14,17 +14,17 @@ class MessageCreatePrivateEvent implements ShouldBroadcast
 {
     use InteractsWithSockets, SerializesModels;
 
-	public $message;
+    public $message;
 
-	/**
-	 * Create a new event instance.
-	 *
-	 * @return void
-	 */
-	public function __construct(Message $message)
-	{
-		$this->message = $message;
-	}
+    /**
+     * Create a new event instance.
+     *
+     * @return void
+     */
+    public function __construct(Message $message)
+    {
+        $this->message = $message;
+    }
 
     /**
      * Get the channels the event should broadcast on.
@@ -33,9 +33,9 @@ class MessageCreatePrivateEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-	    return [
-	    	new PrivateChannel('user.' . $this->message->sender->id),
-		    new PrivateChannel('user.' . $this->message->receiver->id),
-	    ];
+        return [
+            new PrivateChannel('user.' . $this->message->sender->id),
+            new PrivateChannel('user.' . $this->message->receiver->id),
+        ];
     }
 }

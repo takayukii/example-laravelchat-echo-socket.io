@@ -14,17 +14,17 @@ class MessageCreateBroadcastEvent implements ShouldBroadcast
 {
     use InteractsWithSockets, SerializesModels;
 
-	public $message;
+    public $message;
 
-	/**
-	 * Create a new event instance.
-	 *
-	 * @return void
-	 */
-	public function __construct(Message $message)
-	{
-		$this->message = $message;
-	}
+    /**
+     * Create a new event instance.
+     *
+     * @return void
+     */
+    public function __construct(Message $message)
+    {
+        $this->message = $message;
+    }
 
     /**
      * Get the channels the event should broadcast on.
@@ -33,6 +33,6 @@ class MessageCreateBroadcastEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-	    return new Channel('news');
+        return new Channel('news');
     }
 }

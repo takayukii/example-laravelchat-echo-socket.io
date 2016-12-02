@@ -1,8 +1,8 @@
 # Laravel Echo Chat Sample
 
-This sample is sample chat app using [Laravel Echo](https://github.com/laravel/echo) and [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-server). 
+This is sample chat app using [Laravel Echo](https://github.com/laravel/echo) and [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-server). 
 
-With Larave Echo and Laravel Echo Server, both private message and broadcast message are easy to implemented.  
+With Laravel Echo and Laravel Echo Server, both realtime private message and broadcast message can be implemented very easily. Programming in Node.js is not needed.  
 
 ## Prerequisites
 
