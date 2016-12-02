@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+	public function sentMessages()
+	{
+		return $this->hasMany(Message::class, 'from_user_id');
+	}
+
+	public function receivedMessages()
+	{
+		return $this->hasMany(Message::class, 'to_user_id');
+	}
 }
