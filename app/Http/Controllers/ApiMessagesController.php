@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageCreatePrivateEvent;
 use App\Message;
 use App\User;
 use Illuminate\Http\Request;
@@ -21,6 +22,8 @@ class ApiMessagesController extends Controller
 	    $message->sender()->associate($me);
 	    $message->receiver()->associate($receiver);
 	    $message->save();
+
+	    event(new MessageCreatePrivateEvent($message));
 
 	    return $message->toJson();
     }

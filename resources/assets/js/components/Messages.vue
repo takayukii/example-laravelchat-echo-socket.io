@@ -11,7 +11,7 @@
                             {{ user.name }}
                           </option>
                         </select>
-                        <input class="form-control" name="text" v-model="text"></input>
+                        <input class="form-control" name="text" v-model="text"/>
                         <button class="btn btn-default" v-on:click="submitMessage">Submit</button>
                     </div>
                 </div>
@@ -48,9 +48,21 @@
                 }
             })
 
+            this.$http.get('/api/me').then((response) => {
+                console.log(response)
+                this.me = response.body
+
+                Echo.private('user.' + this.me.id)
+                    .listen('MessageCreatePrivateEvent', (e) => {
+                        console.log(e);
+                        this.messages.unshift(e.message);
+                    });
+            })
+
         },
         data() {
             return {
+                me: null,
                 selected: '',
                 options: [],
                 text: '',
@@ -71,11 +83,6 @@
                 }).then((response) => {
                     console.log(response)
                     this.text = ''
-                    this.$http.get('/api/messages/with/' + this.selected)
-                        .then((response) => {
-                            console.log(response)
-                            this.messages = response.body
-                        })
                 }, (response) => {
                     console.log(response)
                 })

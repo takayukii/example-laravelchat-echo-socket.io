@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/api/me', 'ApiUsersController@me');
 Route::get('/api/users', 'ApiUsersController@listUsers');
 Route::get('/api/messages/with/{user}', 'ApiMessagesController@listMessages');
 Route::post('/api/messages/to/{user}', 'ApiMessagesController@createMessage');
