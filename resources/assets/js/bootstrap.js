@@ -41,6 +41,6 @@ import Echo from "laravel-echo"
 
 window.Echo = new Echo({
     broadcaster: 'socket.io',
-    host: '192.168.33.40:6001',
+    host: 'localhost:6001',
     // namespace: ''
 });

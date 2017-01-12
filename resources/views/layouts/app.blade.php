@@ -14,7 +14,7 @@
     <link href="/css/app.css" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="//192.168.33.40:6001/socket.io/socket.io.js"></script>
+    <script src="//localhost:6001/socket.io/socket.io.js"></script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),

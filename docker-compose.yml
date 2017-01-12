@@ -1,0 +1,52 @@
+version: '2'
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - '80:80'
+    volumes:
+      - .:/var/www/echo
+      - ./env/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - app
+
+  app:
+    build: ./env/php/.
+    working_dir: /var/www/echo
+    volumes:
+      - .:/var/www/echo
+    links:
+      - db
+      - redis
+
+  db:
+    image: mysql
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: echo
+      MYSQL_PASSWORD: echo
+      MYSQL_DATABASE: echo
+
+  redis:
+    image: redis:latest
+
+  node:
+    build: ./env/node/.
+    working_dir: /var/www/echo
+    volumes:
+      - .:/var/www/echo
+
+  laravel-echo-server:
+    restart: always
+    build: ./env/laravel-echo-server/.
+    ports:
+      - '6001:6001'
+    working_dir: /var/www/echo
+    volumes:
+      - .:/var/www/echo
+    links:
+      - web
+      - redis

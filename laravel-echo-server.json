@@ -1,10 +1,12 @@
 {
 	"appKey": "p9toimn5fkqgc21qt0tcjqsgp25qh9o3peg9ai2gkrs55q8m218r98phlhiq",
-	"authHost": "http://192.168.33.40",
+	"authHost": "http://web",
 	"authEndpoint": "/broadcasting/auth",
 	"database": "redis",
 	"databaseConfig": {
-		"redis": {},
+		"redis": {
+			"host": "redis"
+		},
 		"sqlite": {
 			"databasePath": "/database/laravel-echo-server.sqlite"
 		}
