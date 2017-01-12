@@ -10,8 +10,6 @@ With Laravel Echo and Laravel Echo Server, both realtime private message and bro
 
 ## How to run app
 
-Execute `bash setup.sh` or run following commands step by step.
-
 #### Clone and run
 
 ```
@@ -19,6 +17,8 @@ $ git clone https://github.com/takayukii/example-Laravelchat-Echo-Socket.io
 $ cd example-Laravelchat-Echo-Socket.io
 $ docker-compose up
 ```
+
+Then execute `bash setup.sh` or run following commands step by step.
 
 #### Install libraries
 
